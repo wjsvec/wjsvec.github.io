@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>《非线性光学》第一章课后习题参考</title>
+      <link href="/2021/10/13/%E3%80%8A%E9%9D%9E%E7%BA%BF%E6%80%A7%E5%85%89%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%B8%80%E7%AB%A0%E8%AF%BE%E5%90%8E%E4%B9%A0%E9%A2%98%E5%8F%82%E8%80%83/"/>
+      <url>/2021/10/13/%E3%80%8A%E9%9D%9E%E7%BA%BF%E6%80%A7%E5%85%89%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%B8%80%E7%AB%A0%E8%AF%BE%E5%90%8E%E4%B9%A0%E9%A2%98%E5%8F%82%E8%80%83/</url>
+      
+        <content type="html"><![CDATA[<h1 id="非线性光学第一章课后习题参考">《非线性光学》第一章课后习题参考</h1><p>这学期开始就是研究生了，说实话算上从疫情开始就没有怎么好好上过线下课了（大四上在忙考研，大四下毕设没啥课了），还真的有些不适应哈哈哈。</p><p>这学期比较有挑战的课感觉就是实验室导师张晓光老师讲的非线性光学了，用的书是北邮新出的《非线性光学》。</p><figure><img src="https://i.loli.net/2021/10/14/Ryep63JoarE9KZg.jpg" alt="1版1刷.jpg" /><figcaption aria-hidden="true">1版1刷.jpg</figcaption></figure><p>第一次出版，第一次印刷，还是主编亲自讲，当然必须要找编者签个名啦·</p><figure><img src="https://i.loli.net/2021/10/14/ruycjDfTnSN1OFE.jpg" alt="编者签名.jpg" /><figcaption aria-hidden="true">编者签名.jpg</figcaption></figure><p>既然是新书，那咱这次就来吃一下螃蟹吧，把自己瞎写的答案发出来讨论一下。感谢某J姓大佬在咱完成作业时的帮助！也感谢老张上课给我们的付出~</p><p>注：只是写出来分享做学术交流用（我是菜鸡，J同学是真大佬），有错误可以通过邮箱（vector7@bupt.edu.cn）联系我 :)</p><p>（本来想用latex好好写一下的，发现公式太繁琐了自动识别不好用，就直接拍了）</p><h2 id="section">1.1</h2><p>没有什么好说的，纯考验基本功的一道题</p><figure><img src="https://i.loli.net/2021/10/16/PXj6MFf25ehtoiz.png" alt="A1.png" /><figcaption aria-hidden="true">A1.png</figcaption></figure><h2 id="section-1">1.2</h2><p>菲涅尔方程的另一种形式的应用，证明双折射的两个偏振态<strong>D</strong>是相互垂直的，需要晶体光学第一基本方程和物质方程联立求解。</p><figure><img src="https://i.loli.net/2021/10/16/GKuLIPSn1YwBgzD.png" alt="A2.png" /><figcaption aria-hidden="true">A2.png</figcaption></figure><h2 id="section-2">1.3</h2><p>课本P14开始的 <strong>晶体中光传输的特征方程</strong>的另一种。证明相当巧妙，要不是上课讲了一遍根本想不到啊。这个可比书上本来的那个行列式证法健康多了（相信我，那个会算到吐血的）</p><figure><img src="https://i.loli.net/2021/10/16/3wN9hyls8G2Z6bg.png" alt="A3.png" /><figcaption aria-hidden="true">A3.png</figcaption></figure><h2 id="section-3">1.4</h2><h3 id="section-4">（1）</h3><p>画个图这道题会容易一些~</p><p>关键在于<strong>s</strong>的方向是由 <strong>E</strong>和 <strong>H</strong>决定的，而 <strong>k</strong> 的方向是由 <strong>D</strong> 和 <strong>H</strong> 决定的（可以看到 <strong>H</strong>是一样的，夹角的产生是由于 <strong>D</strong> 和 <strong>E</strong>）。在单轴晶体中，由晶体光学第一基本方程 ，在折射率椭球中有</p><p>剩下的就是折腾数学了，什么两角和差tan啊，倍角公式啊（反正我是不喜欢）</p><figure><img src="https://i.loli.net/2021/10/16/Vgozdfap13beLnc.png" alt="A4-1.png" /><figcaption aria-hidden="true">A4-1.png</figcaption></figure><h3 id="section-5">（2）</h3><p>公式的实际应用，由正负单轴晶体no和ne的关系一眼就看出来了</p><figure><img src="https://i.loli.net/2021/10/16/D7K6yPgkmUNQ8TZ.png" alt="A4-2.png" /><figcaption aria-hidden="true">A4-2.png</figcaption></figure><h3 id="section-6">（3）</h3><h4 id="a.">a.</h4><p>又是恶心人的证明，函数法好想但是不好算（反正我是不想求这个导数），三角法好算但是不好想（对勾函数还是柯西不等式啥的）。</p><figure><img src="https://i.loli.net/2021/10/16/qu4iSAc5xNTvzXo.png" alt="A4-3-1.png" /><figcaption aria-hidden="true">A4-3-1.png</figcaption></figure><h4 id="b.">b.</h4><p>计算题就很开心了对吧，有数字就不那么抽象了，给一个正晶体一个负晶体算一下</p><h4 id="c.-三角证法有点不好想">c. 三角证法（有点不好想）</h4><p>反正我是看了吉子哥的答案才会了的，呜呜呜，我的吉子哥</p><figure><img src="https://i.loli.net/2021/10/16/a9hHQtIrxTo67gP.png" alt="A4-3-2.png" /><figcaption aria-hidden="true">A4-3-2.png</figcaption></figure><h2 id="section-7">1.5</h2><p>抄的PPT，直爽~</p><figure><img src="https://i.loli.net/2021/10/16/135uEY8T7hzCiMr.png" alt="A5.png" /><figcaption aria-hidden="true">A5.png</figcaption></figure><h2 id="section-8">1.6</h2><p>模仿着书上KDP晶体的分析来就行，注意矩阵不完全一样，方程经常改改别被阴了。。。</p><figure><img src="https://i.loli.net/2021/10/16/Wn4HrmFp5R2vBC1.png" alt="A6.png" /><figcaption aria-hidden="true">A6.png</figcaption></figure><h2 id="section-9">1.7</h2><p>好家伙，张老师自己的1996年的paper出了一道题，文章在<a href="https://kns.cnki.net/kcms/detail/detail.aspx?dbcode=CJFD&amp;dbname=CJFD9697&amp;filename=DXWL603.002&amp;uniplatform=NZKPT&amp;v=YY7y5FpjEBRhwkL4fwAEE1gDmxpXGQyiwnvvlooJxLsE2EYW2bCdmDNjSfVRL%25mmd2BBN">这里</a>，图片版的为了不影响阅读咱放在最下面了</p><p>PS：看文献前我在想咋这么难，现在就觉得好菜啊hhh</p><h3 id="section-10">（1）</h3><p>看完paper就懂了</p><figure><img src="https://i.loli.net/2021/10/16/5kJevKcosChpQSx.png" alt="A7-1.png" /><figcaption aria-hidden="true">A7-1.png</figcaption></figure><h3 id="section-11">（2）</h3><p>看完paper就懂了</p><figure><img src="https://i.loli.net/2021/10/16/Hghb97j8ECosvOG.png" alt="A7-2.png" /><figcaption aria-hidden="true">A7-2.png</figcaption></figure><h3 id="section-12">（3）</h3><p>看完paper就懂了</p><figure><img src="https://i.loli.net/2021/10/16/pOl4v2UrMatq5xL.png" alt="A7-3-1.png" /><figcaption aria-hidden="true">A7-3-1.png</figcaption></figure><p>图不好画，用一下paper原图吧~</p><figure><img src="https://i.loli.net/2021/10/16/fzMad9n6ZQlWEXg.png" alt="A7-3-2.png" /><figcaption aria-hidden="true">A7-3-2.png</figcaption></figure><h2 id="感谢">感谢</h2><p>感谢J大佬在本菜鸡完成作业的帮助，也感谢张老师精彩的教学~</p><p>附：关于KDP晶体在电光效应中两个二阶轴对称性的讨论_张晓光</p><figure><img src="https://i.loli.net/2021/10/16/L9QlGp6Wj8ksF3U.png" alt="关于KDP晶体在电光效应中两个二阶轴对称性的讨论_张晓光_页面_1.png" /><figcaption aria-hidden="true">关于KDP晶体在电光效应中两个二阶轴对称性的讨论_张晓光_页面_1.png</figcaption></figure><figure><img src="https://i.loli.net/2021/10/16/9ru2x1c6avIL5T3.png" alt="关于KDP晶体在电光效应中两个二阶轴对称性的讨论_张晓光_页面_2.png" /><figcaption aria-hidden="true">关于KDP晶体在电光效应中两个二阶轴对称性的讨论_张晓光_页面_2.png</figcaption></figure><figure><img src="https://i.loli.net/2021/10/16/jJiPMsQVpEIvbRN.png" alt="关于KDP晶体在电光效应中两个二阶轴对称性的讨论_张晓光_页面_3.png" /><figcaption aria-hidden="true">关于KDP晶体在电光效应中两个二阶轴对称性的讨论_张晓光_页面_3.png</figcaption></figure><figure><img src="https://i.loli.net/2021/10/16/JIZcX5tA17Wa9Sm.png" alt="关于KDP晶体在电光效应中两个二阶轴对称性的讨论_张晓光_页面_4.png" /><figcaption aria-hidden="true">关于KDP晶体在电光效应中两个二阶轴对称性的讨论_张晓光_页面_4.png</figcaption></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 光通信 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 非线性光学 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>拥抱开源，听技术&amp;开源讲座的一点感想</title>
       <link href="/2021/10/11/%E6%8B%A5%E6%8A%B1%E5%BC%80%E6%BA%90%EF%BC%8C%E5%90%AC%E6%8A%80%E6%9C%AF-%E5%BC%80%E6%BA%90%E8%AE%B2%E5%BA%A7%E7%9A%84%E4%B8%80%E7%82%B9%E6%84%9F%E6%83%B3/"/>
       <url>/2021/10/11/%E6%8B%A5%E6%8A%B1%E5%BC%80%E6%BA%90%EF%BC%8C%E5%90%AC%E6%8A%80%E6%9C%AF-%E5%BC%80%E6%BA%90%E8%AE%B2%E5%BA%A7%E7%9A%84%E4%B8%80%E7%82%B9%E6%84%9F%E6%83%B3/</url>
