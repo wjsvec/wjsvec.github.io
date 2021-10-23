@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>我的hexo建站过程~ （附上没有百度到，自己解决的两个小问题）</title>
+      <link href="/2021/10/22/%E6%88%91%E7%9A%84hexo%E5%BB%BA%E7%AB%99%E8%BF%87%E7%A8%8B-%EF%BC%88%E9%99%84%E4%B8%8A%E6%B2%A1%E6%9C%89%E7%99%BE%E5%BA%A6%E5%88%B0%EF%BC%8C%E8%87%AA%E5%B7%B1%E8%A7%A3%E5%86%B3%E7%9A%84%E4%B8%A4%E4%B8%AA%E5%B0%8F%E9%97%AE%E9%A2%98%EF%BC%89/"/>
+      <url>/2021/10/22/%E6%88%91%E7%9A%84hexo%E5%BB%BA%E7%AB%99%E8%BF%87%E7%A8%8B-%EF%BC%88%E9%99%84%E4%B8%8A%E6%B2%A1%E6%9C%89%E7%99%BE%E5%BA%A6%E5%88%B0%EF%BC%8C%E8%87%AA%E5%B7%B1%E8%A7%A3%E5%86%B3%E7%9A%84%E4%B8%A4%E4%B8%AA%E5%B0%8F%E9%97%AE%E9%A2%98%EF%BC%89/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 前端 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>《非线性光学》第一章课后习题参考</title>
       <link href="/2021/10/13/%E3%80%8A%E9%9D%9E%E7%BA%BF%E6%80%A7%E5%85%89%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%B8%80%E7%AB%A0%E8%AF%BE%E5%90%8E%E4%B9%A0%E9%A2%98%E5%8F%82%E8%80%83/"/>
       <url>/2021/10/13/%E3%80%8A%E9%9D%9E%E7%BA%BF%E6%80%A7%E5%85%89%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%B8%80%E7%AB%A0%E8%AF%BE%E5%90%8E%E4%B9%A0%E9%A2%98%E5%8F%82%E8%80%83/</url>
@@ -45,11 +70,9 @@
       
         <tags>
             
-            <tag> 开源 </tag>
-            
-            <tag> 数据库 </tag>
-            
             <tag> 北邮人论坛 </tag>
+            
+            <tag> 技术闲聊 </tag>
             
         </tags>
       
@@ -78,6 +101,8 @@
             
             <tag> 激光工程 </tag>
             
+            <tag> 光通信 </tag>
+            
         </tags>
       
     </entry>
@@ -92,6 +117,58 @@
         <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="quick-start">Quick Start</h2><h3 id="create-a-new-post">Create a new post</h3><div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> hexo new <span class="st">&quot;My New Post&quot;</span></span></code></pre></div><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="run-server">Run server</h3><div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> hexo server</span></code></pre></div><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="generate-static-files">Generate static files</h3><div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> hexo generate</span></code></pre></div><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="deploy-to-remote-sites">Deploy to remote sites</h3><div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> hexo deploy</span></code></pre></div><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
       
       
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>【补档】站在虚拟与现实的十字路口————keep贝拉语音跑步课程打卡十天记录</title>
+      <link href="/2021/09/20/%E7%AB%99%E5%9C%A8%E8%99%9A%E6%8B%9F%E4%B8%8E%E7%8E%B0%E5%AE%9E%E7%9A%84%E5%8D%81%E5%AD%97%E8%B7%AF%E5%8F%A3keep%E8%B4%9D%E6%8B%89%E8%AF%AD%E9%9F%B3%E8%B7%91%E6%AD%A5%E8%AF%BE%E7%A8%8B%E6%89%93%E5%8D%A1%E5%8D%81%E5%A4%A9%E8%AE%B0%E5%BD%95/"/>
+      <url>/2021/09/20/%E7%AB%99%E5%9C%A8%E8%99%9A%E6%8B%9F%E4%B8%8E%E7%8E%B0%E5%AE%9E%E7%9A%84%E5%8D%81%E5%AD%97%E8%B7%AF%E5%8F%A3keep%E8%B4%9D%E6%8B%89%E8%AF%AD%E9%9F%B3%E8%B7%91%E6%AD%A5%E8%AF%BE%E7%A8%8B%E6%89%93%E5%8D%A1%E5%8D%81%E5%A4%A9%E8%AE%B0%E5%BD%95/</url>
+      
+        <content type="html"><![CDATA[<p>［原文发表在keep，ku们能处］</p><p>乔布斯说，希望苹果“站在科技和艺术的十字路口”。在练习了十天的keep提供的贝拉跑步课程后，我觉得keep的贝拉语音课程站在了虚拟与现实的实际路口。</p><p>有一个关于二次元笑话这样讲，说当现实生活中问起“二次元”时，说“什么是二次元”的大概率是现充，说“我是二次元”的是萌二，而说“我不是二次元”，那就是纯纯的二次元了。这个其实反应了现在很多成熟二次元的一个普遍观点，千万不要把自己的二次元带入生活。就想黑暗森林里面的文明一样，藏好自己，做好伪装，不要交流。或许是二次元真的会对生活有不好的影响，或许是二次元会遭受一般人的偏见。总之，我也一直奉行这个观点，不管是花哨的动漫人物卫衣，或者是二次元挂坠，都小心翼翼的去避免。二次元就像是封建王朝不得干政的后宫一样，即使在其中多么愉快，始终没有对现实生活产生什么真正的影响。</p><p>但贝拉的跑步课程不同，这是我第一次乐于让二次元来影响我的生活，因为这种影响是积极的。或许有人会站出来笑话我：你个沙卵是不是入脑有点厉害了啊，为了听套皮人的一段语音，折腾着去跑步。可是这种批评是不成立的，因为这样的入脑对现实生活并无坏处。</p><p>在此之前，我是一个从不跑步的死宅。虽然身体并不差，身材也并不够“死宅，可是锻炼这种事在繁忙的学业中简直无暇顾及。可是因为这节跑步课程，我确确实实的有了很多的锻炼量，我的生活变得更好了，跑完步后做事的效率也比以往要高了。不论为了听23分钟的语音而跑步显得多么幼稚，这些锻炼为我带来的生活上的改变是确确实实的。而且，正如贝拉在课程中所说，我发现我好像有跑步的天赋呢。拉姐读的跑步课程相当专业，提升相当迅速，就在今天，我的配速也终于突破了6分钟，同步率也达到了100（这仅仅是10天的效果，我已经将近两年没有正经跑步了）。或许有一天，我会不看as了，跑步这个习惯却有可能一直留下来。那时候我会不会想，与asoul的相遇是一段多么奇妙的缘分啊。</p><p>虚拟和现实没有划清界限，例如网恋云云，结果往往如同车祸一样惨淡，这样的事总会让大家觉得心智不成熟。现在“突破次元壁”是一个很流行的话题，这更像是一座高架桥，让二次元的车可以上三次元的路了，可两条路仍然处在完全不同的平面。而keep的贝拉课程更像是虚拟与现实，二次元与三次元交汇的十字路口，而且它向大家证明了：当我们站在虚拟与现实的十字路口时，并不会总是产生惨不忍睹的车祸，也有可能会让现实这条大路更加宽广而通畅。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 生活 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 发病 </tag>
+            
+            <tag> A-soul </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>【补档】毕业了，说些心里话让心里好受一点</title>
+      <link href="/2021/06/30/%E6%AF%95%E4%B8%9A%E4%BA%86%EF%BC%8C%E8%AF%B4%E4%BA%9B%E5%BF%83%E9%87%8C%E8%AF%9D%E8%AE%A9%E5%BF%83%E9%87%8C%E5%A5%BD%E5%8F%97%E4%B8%80%E7%82%B9/"/>
+      <url>/2021/06/30/%E6%AF%95%E4%B8%9A%E4%BA%86%EF%BC%8C%E8%AF%B4%E4%BA%9B%E5%BF%83%E9%87%8C%E8%AF%9D%E8%AE%A9%E5%BF%83%E9%87%8C%E5%A5%BD%E5%8F%97%E4%B8%80%E7%82%B9/</url>
+      
+        <content type="html"><![CDATA[<p>原帖发于<a href="https://bbs.byr.cn/#!article/Feeling/3173739">北邮人论坛</a></p><p>可以听着这首歌读哦~ <a href="http://music.163.com/song?id=395461&amp;userid=601391192">友谊地久天长</a></p><p>原本打算发在盆友圈的，但是害怕丢人只能来论坛倾诉一下。最近快毕业了，又收到了电子院研的录取通知书，来说一点心里话好了。</p><p>我真的是个幸运的孩子，真的。四年前高考出分的时候，自己知道没有考好，整个人的精神状态都是烂掉的。不用说查分数了，填表志愿的事情都完全没有问过，每天只是昏昏噩噩的玩炉石传说。即便自己毫不上心，爸爸妈妈还是关心我的。他们力排众议，给我报了北邮的国际学院。那时我最喜欢的学科是生物，完全不知写代码为何物，身边见识短浅的长辈疯狂的唱衰计算机和宣扬通信已经没落，并且对国际学院惊人的学费嗤之以鼻。</p><p>我就是这样稀里糊涂上了大学，专业是电信工程及管理，开学时的我几乎是个it方面的白痴，甚至不知道软件的后缀应该是“.exe”。我真的很幸运，很幸运，父母亲做了一个完美的选择，这个选择里几乎没有我的贡献。虽然选择完全不是自己做出的，可是我发现北邮，特别是国际学院，真的是来对了地方。这四年可能是我成长最快的四年，这里有最优秀和友善的同学和朋友，博学而有耐心的各位老师教授，百忙之中为我修改简历和提供建议的各位前辈，与这些人相遇真的是我这一辈子的运气。这四年学生生活中，我发现麦克斯韦方程组是如此的优美，写代码虽然接触的晚但自己写起来并不困难，果园的英语教学虽然难受但最终也被克服。北邮也交给了我责任和担当。北邮人求真务实的精神更是让我为之倾佩。在高中同学们还在炫耀父母亲带来的红利时，我惊讶的发现北邮人以自食其力为傲；无论。我觉得，这便是君子的修为，绅士的担当。</p><p>或许这就是上错花轿嫁对郎吧，倘若让我自己来选，北京邮电大学国际学院恐怕在所有平行世界都不会出现在我的志愿书上。可是四年的学习经历告诉我，这就是最好的而且是唯一的选择，我真的非常谢谢我的爸爸妈妈的选择。二老既不会用严谨的二阶倒数寻找极值点，也不会复杂的神经网络梯度下降法，但是他们就是得出了这个问题优美而惊人的解答。</p><p>今天就和可爱的同学们分别了。我的性格不好，四年来可能多有冒犯，也谢谢我的同学们并不因此生我的气。早上从寝室离开时室友们都还在熟睡，晚上回到寝室就只剩自己一个人在寝室中。导员告诉我们，不要最后一个离开寝室，会很难受，我本来不以为然。可现在提笔在手，有很多话想说又不知道怎么说出来，只是想哭，于是就这样吧。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 生活 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 情感 </tag>
+            
+        </tags>
       
     </entry>
     
