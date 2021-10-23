@@ -8,17 +8,19 @@
       <link href="/2021/10/22/%E6%88%91%E7%9A%84hexo%E5%BB%BA%E7%AB%99%E8%BF%87%E7%A8%8B-%EF%BC%88%E9%99%84%E4%B8%8A%E6%B2%A1%E6%9C%89%E7%99%BE%E5%BA%A6%E5%88%B0%EF%BC%8C%E8%87%AA%E5%B7%B1%E8%A7%A3%E5%86%B3%E7%9A%84%E4%B8%A4%E4%B8%AA%E5%B0%8F%E9%97%AE%E9%A2%98%EF%BC%89/"/>
       <url>/2021/10/22/%E6%88%91%E7%9A%84hexo%E5%BB%BA%E7%AB%99%E8%BF%87%E7%A8%8B-%EF%BC%88%E9%99%84%E4%B8%8A%E6%B2%A1%E6%9C%89%E7%99%BE%E5%BA%A6%E5%88%B0%EF%BC%8C%E8%87%AA%E5%B7%B1%E8%A7%A3%E5%86%B3%E7%9A%84%E4%B8%A4%E4%B8%AA%E5%B0%8F%E9%97%AE%E9%A2%98%EF%BC%89/</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<p>闲着没有事做，又想写一点自己的水东西，因此也东施效颦，学着大佬们自己建一个blog玩一下~</p><p>（为什么用hexo呢，因为我看大佬们都用这个，所以我就看了一下教程加入了）</p><p>主要参考了这篇简书上的<a href="https://www.jianshu.com/p/390f202c5b0e">文章"5分钟搞定个人博客-hexo"</a></p><h1 id="新建github仓库本地项目">1. 新建GitHub仓库，本地项目</h1><ol type="1"><li>GitHub上新建一个名为 <strong><em><user-name>.github.io</em></strong> 的仓库，这样命名的仓库是一个特殊的仓库，详见github.io</li><li>本地用npm安装hexo</li></ol><p><code>npm install -g hexo</code></p><ol start="3" type="1"><li>初始化项目，简单来说就是运行这个命令：</li></ol><pre><code>hexo init</code></pre><p>本地看看</p><p><code>hexo s</code></p><p>然后本地浏览器访问 localhost:4000</p><h1 id="执行命令提交看看效果">2. 执行命令，提交看看效果</h1><p>先创建一篇新文章：</p><p><code>hexo new "随便什么好听的名字"</code></p><p>然后修改<strong>项目的</strong>的配置文件(_congif.yml)</p><div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">deploy:</span></span><span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="ex">type:</span> git</span><span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="ex">repo:</span> <span class="op">&lt;</span>你的仓库地址<span class="op">&gt;</span> </span><span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="ex">branch:</span> master</span></code></pre></div><p>用npm安装推送仓库的工具</p><div class="sourceCode" id="cb3"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>npm install hexo<span class="op">-</span>deployer<span class="op">-</span>git <span class="op">--</span>save</span></code></pre></div><p>执行下列命令推送到刚刚配置的仓库</p><pre><code>hexo clean//清除一下原来的各种中间文件（吧hexo g//生成hexo d提交到仓库</code></pre><p>浏览器访问<strong><em><user-name>.github.io</em></strong> ，看一看你的blog吧</p><h1 id="换一个好看的主题">3.换一个好看的主题</h1><p>官网的<a href="https://hexo.io/zh-cn/docs/themes">这里</a>有很多好看的主题的预览。（我甚至还看到了某个很著名的galgame网站的主题），选择一个喜欢的</p><p>然后在项目目录下 git clone 一下项目</p><p>然后在项目的目录配置(_congif.yml)下修改theme：</p><div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">theme:</span> <span class="op">&lt;</span>主题的名字<span class="op">&gt;</span></span></code></pre></div><h1 id="自己解决的两个小问题">自己解决的两个小问题</h1><h2 id="hexo-deploy时遇到的问题">1.<code>hexo deploy</code>时遇到的问题：</h2><p><em>fatal: unable to access 'http://github.com/wjsvec/wjsvec.github.io/': OpenSSL SSL_read: SSL_ERROR_SYSCALL, errno 10054</em> <em>FATAL {</em> <em>err: Error: Spawn failed</em> *at ChildProcess.<anonymous> (C:_modules-util.js:51:21)<em> </em>at ChildProcess.emit (events.js:376:20)<em> </em>at ChildProcess.cp.emit (C:_modules-spawn.js:34:29)<em> </em>at Process.ChildProcess._handle.onexit (internal/child_process.js:277:12) {<em> </em>code: 128<em> </em>}<em> </em>} Something's wrong. Maybe you can find the solution here: %s https://hexo.io/docs/troubleshooting.html*</p><p>百度了一下说是需要把科学上网软件关一下，然后问题变成了这样：</p><p><em>fatal: unable to access 'http://github.com/wjsvec/wjsvec.github.io/': Failed to connect to github.com port 443: Timed out</em> <em>FATAL {</em> <em>err: Error: Spawn failed</em> *at ChildProcess.<anonymous> (C:_modules-util.js:51:21)<em> </em>at ChildProcess.emit (events.js:376:20)<em> </em>at ChildProcess.cp.emit (C:_modules-spawn.js:34:29)<em> </em>at Process.ChildProcess._handle.onexit (internal/child_process.js:277:12) {<em> </em>code: 128<em> </em>}<em> </em>} Something's wrong. Maybe you can find the solution here: %s https://hexo.io/docs/troubleshooting.html*</p><p>废话么，不翻墙怎么上GitHub，必然超时啊</p><p>我的解决，笨办法，去<a href="https://websites.ipaddress.com/www.github.com">IP查询网站</a>找到GitHub现在的IP地址，然后改一下电脑的HOST文件，这样就不用科学上网了，能保证国内的网络也可以ping通GitHub了（当然访问网页版GitHub还是不行。。。。</p><p>可能一次比较慢，需要改一下HOST文件，不过考虑到我这样的老摸鱼好像一个星期就写一篇新的就不错了。。。好像也不是很麻烦？（大概吧</p><h2 id="主题配置时遇到的小问题">2. 主题配置时遇到的小问题</h2><p>我一般喜欢用latex写一点公式，但是hexo不支持，主题安装时提到了需要</p><pre><code># 数学公式npm install hexo-renderer-mathjax --save</code></pre><p>试了一下并不可以正常显示数学公式，于是去看了一下demo网站的代码(package.json)，好像不是推荐的数学库啊，那就重装一下，换成<a href="https://github.com/Haojen/Claudia-theme-blog">demo网站</a>的那个库就好了~</p><p><code>npm install hexo-math</code></p>]]></content>
       
       
       <categories>
           
-          <category> 技术 </category>
+          <category> 编程开发 </category>
           
       </categories>
       
       
         <tags>
+            
+            <tag> 编程开发 </tag>
             
             <tag> 前端 </tag>
             
@@ -70,9 +72,9 @@
       
         <tags>
             
-            <tag> 北邮人论坛 </tag>
-            
             <tag> 技术闲聊 </tag>
+            
+            <tag> 北邮人论坛 </tag>
             
         </tags>
       
@@ -97,11 +99,11 @@
       
         <tags>
             
+            <tag> 光通信 </tag>
+            
             <tag> Matlab </tag>
             
             <tag> 激光工程 </tag>
-            
-            <tag> 光通信 </tag>
             
         </tags>
       
@@ -167,6 +169,33 @@
         <tags>
             
             <tag> 情感 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>剑指offer的内容（python版）(未完成)</title>
+      <link href="/2020/10/22/%E5%89%91%E6%8C%87offer%E7%9A%84%E5%86%85%E5%AE%B9%EF%BC%88python%E7%89%88%EF%BC%89/"/>
+      <url>/2020/10/22/%E5%89%91%E6%8C%87offer%E7%9A%84%E5%86%85%E5%AE%B9%EF%BC%88python%E7%89%88%EF%BC%89/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> 编程开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 算法题 </tag>
+            
+            <tag> 编程开发 </tag>
             
         </tags>
       
