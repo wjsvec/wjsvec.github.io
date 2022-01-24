@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>Windows简单暴力入门TDengine</title>
+      <link href="/2022/01/09/%E7%AE%80%E5%8D%95%E6%9A%B4%E5%8A%9B%E5%85%A5%E9%97%A8TDengine/"/>
+      <url>/2022/01/09/%E7%AE%80%E5%8D%95%E6%9A%B4%E5%8A%9B%E5%85%A5%E9%97%A8TDengine/</url>
+      
+        <content type="html"><![CDATA[<h1>简介</h1><p>作者：最甜甜的小草莓</p><h2 id="本文面向什么样的读者">本文面向什么样的读者</h2><p>TDengine是一个新兴的时序型数据库，可以参见<a href="https://github.com/taosdata/TDengine">GitHub项目</a>。学习一个开源项目，最直接的方式就是先成为一个用户，先把项目运行一下试试看。</p><p>数据库现在的行业趋势好的让人羡慕，<a href="https://www.forbeschina.com/business/55480">涛思数据完成4,700万美元B轮融资 经纬中国领投</a>。要是去年毕业还想投个简历呢(可惜不小心读了个研究生)。受此影响，现在开始看DDIA这本书了，不知道研究生毕业是不是来得及</p><p><a href="tf.wiki">简单粗暴tensorflow</a>是我个人很喜欢的一个教程。很多代码，可以暂时先不详细了解原理，先 run 一下或许有的问题就不存在了。本文面向：</p><ul><li>没有数据库经验，想要简单体验一下TDengine的读者</li><li>想要快速在Windows上运行一下TDengine</li><li>没有参与过开源，想要成为 TDengine 的 contributor （直接最后一章）</li></ul><h2 id="TDengine软件简介">TDengine软件简介</h2><hr><p>TDengine软件分为服务器、客户端和报警模块三部分，目前2.0版服务器仅能在Linux系统上安装和运行，后续会支持Windows、Mac OS等系统。客户端可以在Windows或Linux上安装和运行。任何OS的应用也可以选择RESTful接口连接服务器taosd。CPU支持X64/ARM64/MIPS64/Alpha64，后续会支持ARM32、RISC-V等CPU架构。 您可根据需求选择通过源码或者安装包来安装。</p><hr><p>阅读项目相关文档，在Windows系统，服务端是不能支持直接安装的，因此我们使用 Docker 来在虚拟机中安装服务端；</p><p>之后，我们在直接安装客户端并连接虚拟机中Docker虚拟机</p><p>最后，分享一个我个人的经历，如何为 TDengine 在Github上的开源项目贡献代码</p><h1>服务端安装（Docker）</h1><h2 id="下载并安装Docker">下载并安装Docker</h2><p>关于 Docker 安装可以参考<a href="https://tke-2gipdtus3676b965-1251009918.ap-shanghai.app.tcloudbase.com/docs/docker-start">这篇文章</a>，里面有更为详细的教程。</p><p>首先在 Docker <a href="https://www.docker.com/get-started">官网</a>下载</p><p>点击小鲸鱼图标，在弹出菜单里选择“Preferences”，点击Docker Engine，在右侧json配置文件处添加registry-mirrors配置项，添加时注意标点符号是英文以及不要输多或输少了,（输错了底部会有红色报错提示）：</p><pre><code>&quot;registry-mirrors&quot;: [  &quot;https://mirror.ccs.tencentyun.com/&quot;],</code></pre><p>或者你可以自行百度清华的镜像源</p><h2 id="安装并配置TDengine">安装并配置TDengine</h2><p>接下来的部分参考了官方<a href="https://www.taosdata.com/cn/documentation/getting-started/docker">这篇文档</a></p><p>先运行</p><pre><code>docker run -d -p 6030-6041:6030-6041 -p 6030-6041:6030-6041/udp tdengine/tdengine</code></pre><p>如果你的docker没有下载TDengine，会下载后安装</p><p>之后配置TDengine</p><pre><code>docker run -d --name tdengine --hostname=&quot;tdengine-server&quot; -v ~/work/taos/log:/var/log/taos -v ~/work/taos/data:/var/lib/taos  -p 6030-6041:6030-6041 -p 6030-6041:6030-6041/udp tdengine/tdengine</code></pre><h2 id="运行TDengine">运行TDengine</h2><p>输入 <code>docker ps</code>查看当前运行的的docker列表。上一步的配置名称可能不生效，所以请记下你的 CONTAINER ID</p><p>之后输入 <code>docker exec -it &lt;上面的CONTAINER ID&gt; /bin/bash </code>就可以进入容器开发了</p><p>在容器里输入 <code>taos</code>就可以执行命令了</p><p>输入下面这段代码尝试数据库的使用</p><pre><code>create database db;use db;create table t (ts timestamp, a int);insert into t values ('2019-07-15 00:00:00', 1);insert into t values ('2019-07-15 01:00:00', 2);select * from t;drop database db;</code></pre><p>至此，通过docker的服务端安装就完成了。</p><h1>客户端安装（Windows）</h1><h2 id="安装Windows版本的客户端">安装Windows版本的客户端</h2><p>直接去<a href="https://www.taosdata.com/cn/getting-started/#%E9%80%9A%E8%BF%87%E5%AE%89%E8%A3%85%E5%8C%85%E5%AE%89%E8%A3%85">官网</a>下载并安装即可</p><h2 id="修改本地Host">修改本地Host</h2><p>如果你发现先命令行中存在有一些数据库操作可以，但是另一些数据库操作不可以。类似下图：<img src="https://img-blog.csdnimg.cn/97edbb3c79a84cde84db1d14d076f112.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2pzdmVj,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="在这里插入图片描述"></p><p>参考了<a href="https://blog.csdn.net/weixin_42845682/article/details/117549536">这篇文章</a>原理与FQDN有关，详细了解<a href="https://www.taosdata.com/blog/2020/09/11/1824.html">这里</a>,下面我们直接给出解决办法。</p><p>在服务端输入 <code>hostname -f</code>，得到下面的结果并复制得到的结果<img src="https://img-blog.csdnimg.cn/e2d75105ef6940ad89f3fb3acd04b855.png#pic_center" alt="在这里插入图片描述"></p><p>由于我们在本机运行，所以直接用 127.0.0.1 就可以了，修改 C:\Windows\System32\drivers\etc 这个目录下面的 host.ics 文件，在最下面添加</p><pre><code>127.0.0.1 &lt;前面得到的hostname&gt;</code></pre><p>这样服务端所有数据库命令就都可以正常执行了</p><h2 id="在客户端中操作数据库">在客户端中操作数据库</h2><p>现在，在taos shell中，就可以正常的执行数据库命令了还是尝试前面的代码来测试数据库</p><pre><code>create database db;use db;create table t (ts timestamp, a int);insert into t values ('2019-07-15 00:00:00', 1);insert into t values ('2019-07-15 01:00:00', 2);select * from t;drop database db;</code></pre><h1>从 good first issue 开始成为TDengine的Contributor</h1><p>首先，没有接触过开源的同学请不要对这个部分有畏惧心理，代码的难度大概只有leetcode上“简单”的水平。在北邮校园内有幸听过 TDengine 创始人和boss的一场讲座，他非常鼓励同学们参与开源项目。而 TDengine 里面的 good first issue 难度也并不高，非常适合大家尝试一下。</p><p>首先在GitHub上的打开 good first issue 的 <a href="https://github.com/taosdata/TDengine/labels/good%20first%20issue">issue 页面</a></p><p><img src="https://img-blog.csdnimg.cn/1c0ff8f6d01144a381643e40529fff1c.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2pzdmVj,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="在这里插入图片描述"></p><p>选择一个你觉得简单的 issue，需要一定的C语言基础。不过 good first issue 都比较友好。每一条 Issue 都不一样，具体如何解决可以参考官方微信公众号上的<a href="https://mp.weixin.qq.com/s/mssWF5AoUG-vt-b5_QMtRA">这篇文章</a></p><p>具体在GitHub提交修改后的代码，以下面这个issue为例：<img src="https://img-blog.csdnimg.cn/9e32fc3288f94de88d4ea3b40a14f0f3.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2pzdmVj,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="在这里插入图片描述"></p><p>进入需要修改文件，点击edit<img src="https://img-blog.csdnimg.cn/e94fe87c55e3413aac9303a86963d674.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2pzdmVj,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="在这里插入图片描述"></p><p>修改代码后，点击<img src="https://img-blog.csdnimg.cn/3fdc68fd16a64058b77e43afefe55f61.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2pzdmVj,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="在这里插入图片描述">在GitHub上完成一个 good first issue 不算很难，不过已经是一次很好的开源实践了。真的很轻松，强烈建议每个朋友亲自动手试一试~</p><h1>后记</h1><p>最近实习和学校实在事情太多了，早就想写这么一篇结果一拖再拖，十分羞愧。我也只是一个数据库刚刚入门的小菜鸟，两端长的实习分别是前端和NLP相关的，后端知识也是走一步学一步。说实话，这个过程其实也很快乐啊。</p><p>期间被催了好多次，还好不拿工资也就无所谓了233</p><p>还记得一年前最开始实习的一家小厂，和那里的老板关系很好，就是中科大出来的。跟他闲聊的过程中，感觉科大好多企业家，听他讲在中科大创业群里的见闻。加上现在实习的科大讯飞，今天TDengine的创始人陶总，真的自己到处都在接触中科大的企业家。有时候不禁感慨，北邮人在互联网明明贡献了最多最优秀的程序员，企业家却并不多。吾辈仍需要自强不息啊！</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术闲聊 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 技术闲聊 </tag>
+            
+            <tag> 开源社区 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>论坛的打油诗两则</title>
       <link href="/2021/12/06/%E8%AE%BA%E5%9D%9B%E7%9A%84%E6%89%93%E6%B2%B9%E8%AF%97%E4%B8%A4%E5%88%99/"/>
       <url>/2021/12/06/%E8%AE%BA%E5%9D%9B%E7%9A%84%E6%89%93%E6%B2%B9%E8%AF%97%E4%B8%A4%E5%88%99/</url>
