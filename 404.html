@@ -1,0 +1,288 @@
+<!DOCTYPE html><html class="appearance-auto" lang="zh-CN"><head><meta charset="UTF-8"><title>Wjsvec's blog</title><meta name="description" content="如果船长的最高目标是保住他的船，那么他只能永远呆在港口。"><meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, initial-scale=1"><!-- Google Analytics --><!-- End Google Analytics -->
+<!-- Baidu Analytics --><!-- End Baidu Analytics --><link rel="icon" href="/images/favicon.png"><link rel="stylesheet" href="/style/common/bulma.css"><link rel="stylesheet" href="/style/base.css"><link rel="stylesheet" href="/style/common/helper.css"><script src="/js/common.js"></script><link rel="stylesheet" href="/style/widget-post-list.css"><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head><body class="is-flex is-flex-direction-column"><header class="header-widget is-flex-shrink-0 is-hidden-mobile"><div class="container is-fullhd is-flex is-justify-content-space-between is-align-items-center is-full-height"><section class="is-hidden-mobile is-flex-shrink-0"><h2><a href="/">Wjsvec's blog</a></h2></section><h3 class="is-hidden-mobile is-family-serif is-full-height is-flex is-align-items-center is-flex-shrink-0"></h3><aside class="is-flex-shrink-0"><h3 class="is-inline-block"><a href="/">首页</a></h3><h3 class="is-inline-block"><a href="/archives">归档</a></h3><h3 class="is-inline-block"><a href="/2000/01/25/%E5%8F%8B%E9%93%BE/">友链</a></h3><h3 class="is-inline-block"><a href="/about">关于</a></h3></aside></div></header><header class="is-flex header-widget is-flex-shrink-0 is-align-items-center is-justify-content-center is-hidden-tablet"><h3 class="is-inline-block"><a href="/">首页</a></h3><h3 class="is-inline-block"><a href="/archives">归档</a></h3><h3 class="is-inline-block"><a href="/2000/01/25/%E5%8F%8B%E9%93%BE/">友链</a></h3><h3 class="is-inline-block"><a href="/about">关于</a></h3></header><main><article class="post-container is-flex is-justify-content-center section container is-max-widescreen pt-4 px-2"><div class="columns is-variable is-1-tablet is-3-desktop-only is-2-widescreen is-full-width"><section class="column"><article class="post-item-card"><header class="is-relative is-flex"><div class="post-cover-backdrop is-hidden"><img src="https://vonng.gitbooks.io/ddia-cn/content/img/fig3-8.png" alt="loading.."></div><a class="post-cover-link has-text-centered skeleton" href="/2022/03/30/%E3%80%8A%E6%95%B0%E6%8D%AE%E5%AF%86%E9%9B%86%E5%9E%8B%E7%B3%BB%E7%BB%9F%E5%BA%94%E7%94%A8%E8%AE%BE%E8%AE%A1%E3%80%8B%E7%AC%AC%E4%B8%89%E7%AB%A0%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E4%BA%8B%E5%8A%A1%E5%A4%84%E7%90%86%E4%B8%8E%E5%88%86%E6%9E%90%E5%A4%84%E7%90%86/"><img class="post-cover-img js-img-fadeIn" src="https://vonng.gitbooks.io/ddia-cn/content/img/fig3-8.png" alt="loading.." data-backdrop="true"></a></header><section class="content post-card-content p-4 pb-5"><header><a href="/tags/%E6%8A%80%E6%9C%AF%E9%97%B2%E8%81%8A"><i class="tag post-item-tag">技术闲聊</i></a><a href="/tags/%E5%BC%80%E6%BA%90%E7%A4%BE%E5%8C%BA"><i class="tag post-item-tag">开源社区</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2022/03/30/%E3%80%8A%E6%95%B0%E6%8D%AE%E5%AF%86%E9%9B%86%E5%9E%8B%E7%B3%BB%E7%BB%9F%E5%BA%94%E7%94%A8%E8%AE%BE%E8%AE%A1%E3%80%8B%E7%AC%AC%E4%B8%89%E7%AB%A0%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E4%BA%8B%E5%8A%A1%E5%A4%84%E7%90%86%E4%B8%8E%E5%88%86%E6%9E%90%E5%A4%84%E7%90%86/">《数据密集型系统应用设计》第三章读书笔记--事务处理与分析处理</a></h2><time class="has-text-grey" datetime="2022-03-30T01:33:32.000Z">2022-03-30</time><p class="is-flex-grow-2 mt-2">事务处理与分析处理
+事务处理与分析处理
+OLTP vs OLAP
+动机：早期的数据库通常对应于商业交易领域，例如销售、订单、支付员工工资等。后来当数据库扩展到了不涉及金钱的领域，事务一词仍然存在，主要指 组成一个逻辑单元的一组读写操作。即使数据库被用于例如博客的评论、游戏中的动作、通讯录中的联系人等，其基本的访问模式仍然与处理业务交易类似。应用程序通常使用索引中的某些键查找 少量记录，因为这些应用程序是交互式的，所以访问模式被称为 在线事务处理（online transaction processing）。
+不过随着商业进步,数据出现了一些不同访问模式,下面有几个是不同的.
+
+某在线游戏中指定游戏角色的等级是多少
+
+
+购物网站中一个订单记录
+
+
+博客里的某篇文章获得了多少点赞
+
+..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2022/03/30/%E3%80%8A%E6%95%B0%E6%8D%AE%E5%AF%86%E9%9B%86%E5%9E%8B%E7%B3%BB%E7%BB%9F%E5%BA%94%E7%94%A8%E8%AE%BE%E8%AE%A1%E3%80%8B%E7%AC%AC%E4%B8%89%E7%AB%A0%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E4%BA%8B%E5%8A%A1%E5%A4%84%E7%90%86%E4%B8%8E%E5%88%86%E6%9E%90%E5%A4%84%E7%90%86/">更多</a></section></article><article class="post-item-card"><header class="is-relative is-flex"><div class="post-cover-backdrop is-hidden"><img src="https://img-blog.csdnimg.cn/39f4de2b4c7f48baa4caa0ad8b3e6d01.png#pic_center" alt="loading.."></div><a class="post-cover-link has-text-centered skeleton" href="/2022/01/25/DRG-%E4%B8%8E-ICD10-%E7%BC%96%E7%A0%81%E7%9B%B8%E5%85%B3%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E5%88%86%E4%BA%AB/"><img class="post-cover-img js-img-fadeIn" src="https://img-blog.csdnimg.cn/39f4de2b4c7f48baa4caa0ad8b3e6d01.png#pic_center" alt="loading.." data-backdrop="true"></a></header><section class="content post-card-content p-4 pb-5"><header><a href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB"><i class="tag post-item-tag">论文阅读</i></a><a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0"><i class="tag post-item-tag">深度学习</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2022/01/25/DRG-%E4%B8%8E-ICD10-%E7%BC%96%E7%A0%81%E7%9B%B8%E5%85%B3%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E5%88%86%E4%BA%AB/">DRG 与 ICD10 编码相关论文阅读分享</a></h2><time class="has-text-grey" datetime="2022-01-24T16:58:01.000Z">2022-01-25</time><p class="is-flex-grow-2 mt-2">DRG 与 ICD10 编码相关论文阅读分享
+相关概念
+
+关于DRG
+
+疾病诊断相关分组（Diagnosis-Related Groups，DRG）诞生于上世纪60 年代末的美国。上世纪80 年代，美国率先将DRG 用于医疗保险定额支付，现今多数发达国家社会医疗保险都采用这一工具进行预算、资源配置管理或购买医疗服务。从本质上讲，DRG 既能用于支付管理，也能用于预算管理，同时还是促进医疗服务质量提升的有效工具。
+疾病诊断相关分组（Diagnosis-Related Groups，DRG）诞生于上世纪60 年代末的美国。上世纪80 年代，美国率先将DRG 用于医疗保险定额支付，现今多数发达国家社会医疗保险都采用这一工具进行预算、资源配置管理或购买医疗服务。从本质上讲，DRG 既能用于支付管理，也能..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2022/01/25/DRG-%E4%B8%8E-ICD10-%E7%BC%96%E7%A0%81%E7%9B%B8%E5%85%B3%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E5%88%86%E4%BA%AB/">更多</a></section></article><article class="post-item-card"><header class="is-relative is-flex"><div class="post-cover-backdrop is-hidden"><img src="https://img-blog.csdnimg.cn/97edbb3c79a84cde84db1d14d076f112.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2pzdmVj,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="loading.."></div><a class="post-cover-link has-text-centered skeleton" href="/2022/01/09/%E7%AE%80%E5%8D%95%E6%9A%B4%E5%8A%9B%E5%85%A5%E9%97%A8TDengine/"><img class="post-cover-img js-img-fadeIn" src="https://img-blog.csdnimg.cn/97edbb3c79a84cde84db1d14d076f112.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2pzdmVj,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="loading.." data-backdrop="true"></a></header><section class="content post-card-content p-4 pb-5"><header><a href="/tags/%E6%8A%80%E6%9C%AF%E9%97%B2%E8%81%8A"><i class="tag post-item-tag">技术闲聊</i></a><a href="/tags/%E5%BC%80%E6%BA%90%E7%A4%BE%E5%8C%BA"><i class="tag post-item-tag">开源社区</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2022/01/09/%E7%AE%80%E5%8D%95%E6%9A%B4%E5%8A%9B%E5%85%A5%E9%97%A8TDengine/">Windows简单暴力入门TDengine</a></h2><time class="has-text-grey" datetime="2022-01-09T09:43:22.000Z">2022-01-09</time><p class="is-flex-grow-2 mt-2">简介
+作者：最甜甜的小草莓
+本文面向什么样的读者
+TDengine是一个新兴的时序型数据库，可以参见GitHub项目。学习一个开源项目，最直接的方式就是先成为一个用户，先把项目运行一下试试看。
+数据库现在的行业趋势好的让人羡慕，涛思数据完成4,700万美元B轮融资 经纬中国领投。要是去年毕业还想投个简历呢(可惜不小心读了个研究生)。受此影响，现在开始看DDIA这本书了，不知道研究生毕业是不是来得及
+简单粗暴tensorflow是我个人很喜欢的一个教程。很多代码，可以暂时先不详细了解原理，先 run 一下或许有的问题就不存在了。本文面向：
+
+没有数据库经验，想要简单体验一下TDengine的读者
+想要快速在Windows上运行一下TDengine
+没有参与过开源，想要成为 TDengine 的 contrib..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2022/01/09/%E7%AE%80%E5%8D%95%E6%9A%B4%E5%8A%9B%E5%85%A5%E9%97%A8TDengine/">更多</a></section></article><article class="post-item-card"><section class="content post-card-content p-4 pb-5"><header><a href="/tags/%E5%8C%97%E9%82%AE%E4%BA%BA%E8%AE%BA%E5%9D%9B"><i class="tag post-item-tag">北邮人论坛</i></a><a href="/tags/%E6%95%B4%E6%B4%BB"><i class="tag post-item-tag">整活</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2021/12/06/%E8%AE%BA%E5%9D%9B%E7%9A%84%E6%89%93%E6%B2%B9%E8%AF%97%E4%B8%A4%E5%88%99/">论坛的打油诗两则</a></h2><time class="has-text-grey" datetime="2021-12-06T10:58:25.000Z">2021-12-06</time><p class="is-flex-grow-2 mt-2">《江城子·辛丑年十月廿四观悄悄话有感》
+北邮人发匿名忙。互联网，哪家强。前端后端，还是算法香。阿里腾讯宇宙厂，都不难，有手上。
+
+兄弟学校不要狂。九八五，又何妨？感觉就业。。。不如北邮强。若问导师好不好，都不行，赶紧run。
+
+《沁园春·北邮》
+北邮风光，西土城边，论坛治校。
+
+看称职导员，未开刃刀；外卖佳肴，无人来盗。
+
+招生尽力，休要争吵，分数多高就多高；
+
+待九月，看渣硕菜鸟，百万总包。
+
+
+
+
+
+北邮如此多娇，引无数学子竟折腰。
+
+惜中科理航，难以挣刀；
+
+电子科大，西南一角；
+
+道口体校，分数最高，就业还是一样招；
+
+皆渣矣，问哪里最好，还是本校～
+
+闲暇做调侃，以后不会再写了，没啥新意了
+</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2021/12/06/%E8%AE%BA%E5%9D%9B%E7%9A%84%E6%89%93%E6%B2%B9%E8%AF%97%E4%B8%A4%E5%88%99/">更多</a></section></article><article class="post-item-card"><header class="is-relative is-flex"><div class="post-cover-backdrop is-hidden"><img src="https://i.loli.net/2021/11/27/SHIfQuKNYPMqhFo.png" alt="loading.."></div><a class="post-cover-link has-text-centered skeleton" href="/2021/11/26/%E7%BB%99%E6%9E%9C%E5%9B%AD%E7%94%B5%E7%AE%A1%E5%90%8C%E5%AD%A6%E7%9A%84%E8%80%83%E7%A0%94%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB%E4%BB%A5%E5%8F%8A%E4%B8%80%E4%BA%9B%E7%AD%94%E7%96%91/"><img class="post-cover-img js-img-fadeIn" src="https://i.loli.net/2021/11/27/SHIfQuKNYPMqhFo.png" alt="loading.." data-backdrop="true"></a></header><section class="content post-card-content p-4 pb-5"><header><a href="/tags/%E6%8A%80%E6%9C%AF%E9%97%B2%E8%81%8A"><i class="tag post-item-tag">技术闲聊</i></a><a href="/tags/%E5%8C%97%E9%82%AE%E4%BA%BA%E8%AE%BA%E5%9D%9B"><i class="tag post-item-tag">北邮人论坛</i></a><a href="/tags/A-soul"><i class="tag post-item-tag">A-soul</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2021/11/26/%E7%BB%99%E6%9E%9C%E5%9B%AD%E7%94%B5%E7%AE%A1%E5%90%8C%E5%AD%A6%E7%9A%84%E8%80%83%E7%A0%94%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB%E4%BB%A5%E5%8F%8A%E4%B8%80%E4%BA%9B%E7%AD%94%E7%96%91/">给果园电管同学的考研经验分享以及一些答疑</a></h2><time class="has-text-grey" datetime="2021-11-26T15:26:17.000Z">2021-11-26</time><p class="is-flex-grow-2 mt-2">给果园电管同学的考研经验分享以及一些答疑
+今天应本科的导员邀请给果园大四的同学分享了一下考研经验。老实讲我自己真的很菜，本科只坐在下面听大佬讲的那种水平。现在居然能轮到我分享经验了。PPT我放在后面了，好不好总之就那样啦。
+分享结束后有同学问了一些问题，用文字来统一回答一下吧（正好水一篇论坛）~
+Q1： PPT中提到了数一真的很难，我做难题的时候也这么觉得，那么我还要做吗？
+我的建议是，还是做一做，不要随便跳题。数一出现陌生题目很正常，还是要勇敢去做的。
+我说的做数一崩溃了、破防了、做哭了都是正常存在的，因为这门课就是有些难度的。但这并不是让你不做，而是做破防了崩溃了做哭了也要习惯并接着做。
+举例还是，我说一段代码可能会报错，而且无法预知。并不是说这段代码就不运行了，而是你要去try catch..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2021/11/26/%E7%BB%99%E6%9E%9C%E5%9B%AD%E7%94%B5%E7%AE%A1%E5%90%8C%E5%AD%A6%E7%9A%84%E8%80%83%E7%A0%94%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB%E4%BB%A5%E5%8F%8A%E4%B8%80%E4%BA%9B%E7%AD%94%E7%96%91/">更多</a></section></article><article class="post-item-card"><header class="is-relative is-flex"><div class="post-cover-backdrop is-hidden"><img src="https://i.loli.net/2021/11/21/bGcUdyK4NCPJ9Mp.jpg" alt="loading.."></div><a class="post-cover-link has-text-centered skeleton" href="/2021/11/21/%E3%80%8A%E9%9D%9E%E7%BA%BF%E6%80%A7%E5%85%89%E7%BA%A4%E5%85%89%E5%AD%A6%E3%80%8B%E7%AC%AC%E5%9B%9B%E7%AB%A0%E7%AC%AC4%E9%A2%98%EF%BC%8C%E6%88%91%E7%9A%84%E8%A7%A3%E7%AD%94/"><img class="post-cover-img js-img-fadeIn" src="https://i.loli.net/2021/11/21/bGcUdyK4NCPJ9Mp.jpg" alt="loading.." data-backdrop="true"></a></header><section class="content post-card-content p-4 pb-5"><header><a href="/tags/%E9%9D%9E%E7%BA%BF%E6%80%A7%E5%85%89%E5%AD%A6"><i class="tag post-item-tag">非线性光学</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2021/11/21/%E3%80%8A%E9%9D%9E%E7%BA%BF%E6%80%A7%E5%85%89%E7%BA%A4%E5%85%89%E5%AD%A6%E3%80%8B%E7%AC%AC%E5%9B%9B%E7%AB%A0%E7%AC%AC4%E9%A2%98%EF%BC%8C%E6%88%91%E7%9A%84%E8%A7%A3%E7%AD%94/">《非线性光纤光学》第四章第4题，我的解答</a></h2><time class="has-text-grey" datetime="2021-11-21T00:33:04.000Z">2021-11-21</time><p class="is-flex-grow-2 mt-2">《非线性光纤光学》第四章第4题，我的解答
+题目：画出KDP晶体的角度调谐曲线
+
+mmexport1637455043064.jpg
+
+（1）
+前辈有题解了咱这里就偷个懒咯~
+
+第一问题解.jpg
+
+代码也很简单，把公式抄一抄带一带就好了，注意的话，书上的每个常数都别简化估算，全部写进代码里,不然算不出精确结果哒。
+lamda = 347.2;
+lamda_p = lamda*1e-3;
+lamda_s = 2*lamda_p;
+lamda_i = 2*lamda_p;
+no_2w_squ = 2.259276 + 0.78056/(77.26408*lamda_p*lamda_p-1) + (0.032513*lamda_p*lamda_p)/(0.0025*lamda_p*l..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2021/11/21/%E3%80%8A%E9%9D%9E%E7%BA%BF%E6%80%A7%E5%85%89%E7%BA%A4%E5%85%89%E5%AD%A6%E3%80%8B%E7%AC%AC%E5%9B%9B%E7%AB%A0%E7%AC%AC4%E9%A2%98%EF%BC%8C%E6%88%91%E7%9A%84%E8%A7%A3%E7%AD%94/">更多</a></section></article><article class="post-item-card"><header class="is-relative is-flex"><div class="post-cover-backdrop is-hidden"><img src="https://i.loli.net/2021/11/03/BrR5QIU8tx2KEZo.jpg" alt="loading.."></div><a class="post-cover-link has-text-centered skeleton" href="/2021/11/03/%E6%9C%9D%E8%8A%B1%E5%A4%95%E6%8B%BE%EF%BC%8C%E7%9C%8B%E7%9C%8B10%E5%B9%B4%E5%89%8D%E7%9A%84%E8%AE%A1%E7%BD%91%E6%A0%B8%E5%BF%83%E6%9C%9F%E5%88%8A%E5%9C%A8%E8%AF%B4%E5%95%A5/"><img class="post-cover-img js-img-fadeIn" src="https://i.loli.net/2021/11/03/BrR5QIU8tx2KEZo.jpg" alt="loading.." data-backdrop="true"></a></header><section class="content post-card-content p-4 pb-5"><header><a href="/tags/%E6%8A%80%E6%9C%AF%E9%97%B2%E8%81%8A"><i class="tag post-item-tag">技术闲聊</i></a><a href="/tags/%E5%8C%97%E9%82%AE%E4%BA%BA%E8%AE%BA%E5%9D%9B"><i class="tag post-item-tag">北邮人论坛</i></a><a href="/tags/%E6%95%B4%E6%B4%BB"><i class="tag post-item-tag">整活</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2021/11/03/%E6%9C%9D%E8%8A%B1%E5%A4%95%E6%8B%BE%EF%BC%8C%E7%9C%8B%E7%9C%8B10%E5%B9%B4%E5%89%8D%E7%9A%84%E8%AE%A1%E7%BD%91%E6%A0%B8%E5%BF%83%E6%9C%9F%E5%88%8A%E5%9C%A8%E8%AF%B4%E5%95%A5/">朝花夕拾，看看10年前的计网核心期刊在说啥</a></h2><time class="has-text-grey" datetime="2021-11-03T07:52:10.000Z">2021-11-03</time><p class="is-flex-grow-2 mt-2">疫情封校，甚是无聊，于是在图书馆考古，偶然发现了十年前期刊的存档，感觉很有意思就分享下~
+[封面]
+嗯，平平无奇的绿色，一体机的广告
+
+封面背面
+
+什么，居然是中文核心期刊，那得打起精神了！
+ 嗯，正是乔帮主开始引领起互联网潮流的年代
+
+win8
+
+Windows8哈哈哈哈哈哈，文章说的好有道理，那么请问，你用了吗！
+ 404网站
+
+蓝屏
+
+“1.重启” 嗯，这很合理！果然重启是10年前大家就公认的良方
+
+瑞星
+
+嗯？苹果，安全软件？有必要吗，大概是安全厂商的思维惯性吧
+
+UML
+
+是的，这篇文章在讲UML（统一建模语言）的军事用途。
+
+UML2
+
+相当有板有眼，大概那个年代类图对于军队还很新鲜吧，不知道装备了类图的我军战斗力也没有提高（总之Java战..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2021/11/03/%E6%9C%9D%E8%8A%B1%E5%A4%95%E6%8B%BE%EF%BC%8C%E7%9C%8B%E7%9C%8B10%E5%B9%B4%E5%89%8D%E7%9A%84%E8%AE%A1%E7%BD%91%E6%A0%B8%E5%BF%83%E6%9C%9F%E5%88%8A%E5%9C%A8%E8%AF%B4%E5%95%A5/">更多</a></section></article><article class="post-item-card"><section class="content post-card-content p-4 pb-5"><header><a href="/tags/%E7%BC%96%E7%A8%8B%E5%BC%80%E5%8F%91"><i class="tag post-item-tag">编程开发</i></a><a href="/tags/%E5%89%8D%E7%AB%AF"><i class="tag post-item-tag">前端</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2021/10/22/%E6%88%91%E7%9A%84hexo%E5%BB%BA%E7%AB%99%E8%BF%87%E7%A8%8B-%EF%BC%88%E9%99%84%E4%B8%8A%E6%B2%A1%E6%9C%89%E7%99%BE%E5%BA%A6%E5%88%B0%EF%BC%8C%E8%87%AA%E5%B7%B1%E8%A7%A3%E5%86%B3%E7%9A%84%E4%B8%A4%E4%B8%AA%E5%B0%8F%E9%97%AE%E9%A2%98%EF%BC%89/">我的hexo建站过程~ （附上没有百度到，自己解决的两个小问题）</a></h2><time class="has-text-grey" datetime="2021-10-22T01:35:04.000Z">2021-10-22</time><p class="is-flex-grow-2 mt-2">闲着没有事做，又想写一点自己的水东西，因此也东施效颦，学着大佬们自己建一个blog玩一下~
+（为什么用hexo呢，因为我看大佬们都用这个，所以我就看了一下教程加入了）
+主要参考了这篇简书上的文章&quot;5分钟搞定个人博客-hexo&quot;
+1. 新建GitHub仓库，本地项目
+
+GitHub上新建一个名为 .github.io 的仓库，这样命名的仓库是一个特殊的仓库，详见github.io
+本地用npm安装hexo
+
+npm install -g hexo
+
+初始化项目，简单来说就是运行这个命令：
+
+hexo init
+本地看看
+hexo s
+然后本地浏览器访问 localhost:4000
+2. 执行命令，提交看看效果
+先创建一篇新文章：
+hexo new &quot;随便什么好听的名字&quot;..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2021/10/22/%E6%88%91%E7%9A%84hexo%E5%BB%BA%E7%AB%99%E8%BF%87%E7%A8%8B-%EF%BC%88%E9%99%84%E4%B8%8A%E6%B2%A1%E6%9C%89%E7%99%BE%E5%BA%A6%E5%88%B0%EF%BC%8C%E8%87%AA%E5%B7%B1%E8%A7%A3%E5%86%B3%E7%9A%84%E4%B8%A4%E4%B8%AA%E5%B0%8F%E9%97%AE%E9%A2%98%EF%BC%89/">更多</a></section></article><article class="post-item-card"><header class="is-relative is-flex"><div class="post-cover-backdrop is-hidden"><img src="https://i.loli.net/2021/10/14/Ryep63JoarE9KZg.jpg" alt="loading.."></div><a class="post-cover-link has-text-centered skeleton" href="/2021/10/13/%E3%80%8A%E9%9D%9E%E7%BA%BF%E6%80%A7%E5%85%89%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%B8%80%E7%AB%A0%E8%AF%BE%E5%90%8E%E4%B9%A0%E9%A2%98%E5%8F%82%E8%80%83/"><img class="post-cover-img js-img-fadeIn" src="https://i.loli.net/2021/10/14/Ryep63JoarE9KZg.jpg" alt="loading.." data-backdrop="true"></a></header><section class="content post-card-content p-4 pb-5"><header><a href="/tags/%E9%9D%9E%E7%BA%BF%E6%80%A7%E5%85%89%E5%AD%A6"><i class="tag post-item-tag">非线性光学</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2021/10/13/%E3%80%8A%E9%9D%9E%E7%BA%BF%E6%80%A7%E5%85%89%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%B8%80%E7%AB%A0%E8%AF%BE%E5%90%8E%E4%B9%A0%E9%A2%98%E5%8F%82%E8%80%83/">《非线性光学》第一章课后习题参考</a></h2><time class="has-text-grey" datetime="2021-10-13T15:46:57.000Z">2021-10-13</time><p class="is-flex-grow-2 mt-2">《非线性光学》第一章课后习题参考
+这学期开始就是研究生了，说实话算上从疫情开始就没有怎么好好上过线下课了（大四上在忙考研，大四下毕设没啥课了），还真的有些不适应哈哈哈。
+这学期比较有挑战的课感觉就是实验室导师张晓光老师讲的非线性光学了，用的书是北邮新出的《非线性光学》。
+
+1版1刷.jpg
+
+第一次出版，第一次印刷，还是主编亲自讲，当然必须要找编者签个名啦·
+
+编者签名.jpg
+
+既然是新书，那咱这次就来吃一下螃蟹吧，把自己瞎写的答案发出来讨论一下。感谢某J姓大佬在咱完成作业时的帮助！也感谢老张上课给我们的付出~
+注：只是写出来分享做学术交流用（我是菜鸡，J同学是真大佬），有错误可以通过邮箱（vector7#bupt.edu.cn）联系我 （请把#替换为@）
+（本来想用latex好好..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2021/10/13/%E3%80%8A%E9%9D%9E%E7%BA%BF%E6%80%A7%E5%85%89%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%B8%80%E7%AB%A0%E8%AF%BE%E5%90%8E%E4%B9%A0%E9%A2%98%E5%8F%82%E8%80%83/">更多</a></section></article><article class="post-item-card"><header class="is-relative is-flex"><div class="post-cover-backdrop is-hidden"><img src="https://i.loli.net/2021/10/10/OwJykuq7Q2hen3i.jpg" alt="loading.."></div><a class="post-cover-link has-text-centered skeleton" href="/2021/10/11/%E6%8B%A5%E6%8A%B1%E5%BC%80%E6%BA%90%EF%BC%8C%E5%90%AC%E6%8A%80%E6%9C%AF-%E5%BC%80%E6%BA%90%E8%AE%B2%E5%BA%A7%E7%9A%84%E4%B8%80%E7%82%B9%E6%84%9F%E6%83%B3/"><img class="post-cover-img js-img-fadeIn" src="https://i.loli.net/2021/10/10/OwJykuq7Q2hen3i.jpg" alt="loading.." data-backdrop="true"></a></header><section class="content post-card-content p-4 pb-5"><header><a href="/tags/%E6%8A%80%E6%9C%AF%E9%97%B2%E8%81%8A"><i class="tag post-item-tag">技术闲聊</i></a><a href="/tags/%E5%8C%97%E9%82%AE%E4%BA%BA%E8%AE%BA%E5%9D%9B"><i class="tag post-item-tag">北邮人论坛</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2021/10/11/%E6%8B%A5%E6%8A%B1%E5%BC%80%E6%BA%90%EF%BC%8C%E5%90%AC%E6%8A%80%E6%9C%AF-%E5%BC%80%E6%BA%90%E8%AE%B2%E5%BA%A7%E7%9A%84%E4%B8%80%E7%82%B9%E6%84%9F%E6%83%B3/">拥抱开源，听技术&amp;开源讲座的一点感想</a></h2><time class="has-text-grey" datetime="2021-10-10T16:42:39.000Z">2021-10-11</time><p class="is-flex-grow-2 mt-2">拥抱开源，听“技术&amp;amp;开源”讲座的一点感想
+昨天去听了一下一个在教三开的一个关于开源的讲座，收获颇多，分享一下~
+讲座的大佬是涛思数据的CEO，一家数据库相关的独角兽公司。在Github上开源的TDengine现在已经有16000+star了，而且陶总是还在写代码的CEO（上面的项目里370 commits，几万行代码了，68年的人这个精力真是好 ），很多观点真的很新颖也很贴近学生的切实利益，也就是找工作相关，因此在这里写点感想分享一下~
+学生参与开源项目的好处
+其实这个是讲座最后的部分了，不过北邮人都是务实的，我也不说虚的了。开门见山先讲这个。作为一个每天在悄悄话冲浪的闲人，很多学生常常抱怨“导师思想保守不肯放实习”“实习单位学不到技术就是拧螺丝”“实习项目没啥技术高手真想跑路”。其实呢，参..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2021/10/11/%E6%8B%A5%E6%8A%B1%E5%BC%80%E6%BA%90%EF%BC%8C%E5%90%AC%E6%8A%80%E6%9C%AF-%E5%BC%80%E6%BA%90%E8%AE%B2%E5%BA%A7%E7%9A%84%E4%B8%80%E7%82%B9%E6%84%9F%E6%83%B3/">更多</a></section></article><section class="paginator is-flex is-justify-content-flex-end is-flex-wrap-wrap mt-5"><span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="iconfont icon-next has-text-grey"></i></a></section></section><aside class="column is-hidden-mobile is-4-tablet is-3-widescreen"><style>.search-widget .search-input {
+    border: none;
+    outline: none;
+    background: transparent;
+    color: var(--second-text-color);
+}
+.search-widget .search-content {
+    position: absolute;
+    left: 0;
+    top: calc(100% - 3px);
+    z-index: 2;
+
+    width: 100%;
+    height: 0;
+    max-height: 550px;
+
+    overflow: auto;
+    box-sizing: border-box;
+
+    background: var(--top-bar-bg-color);
+    backdrop-filter: blur(var(--backdropFilter));
+    -webkit-backdrop-filter: blur(var(--backdropFilter));
+
+    border-bottom-left-radius: var(--borderRadius);
+    border-bottom-right-radius: var(--borderRadius);
+    box-shadow: 0 12px 15px rgba(0, 0, 0, 0.08);
+}
+
+.search-widget .search-content a:hover h5 {
+    color: #3273dc!important;
+}
+</style><main class="aside-card-container search-widget is-relative"><label for="searchInput"><div class="is-flex px-4" id="searchButton"><i class="iconfont icon--search1 mr-1"></i><input class="search-input is-flex-grow-1" id="searchInput" placeholder="搜索内容.."></div></label><section class="search-content content" id="searchContent"></section></main><script>var searchDatabase = []
+var searchInputEl = document.getElementById('searchInput')
+var searchButtonEl = document.getElementById('searchButton')
+var searchResultEl = document.getElementById('searchContent')
+
+searchInputEl.oninput = function (evt) {
+    var searchValue = evt.srcElement.value
+    var haveSearchValue = Boolean(searchValue.trim())
+    if (!haveSearchValue) {
+        searchResultEl.style.height = 0
+        searchResultEl.innerHTML = null
+        return
+    }
+
+    var searchResults = searching(searchValue)
+
+    if (searchResults.length > 0) {
+        renderSearchResults(searchResults)
+    }
+}
+
+function renderSearchResults(results) {
+    searchResultEl.innerHTML = null
+    var fragment = document.createDocumentFragment()
+
+    results.forEach(function (item) {
+        var link = document.createElement('a')
+        var title = document.createElement('h5')
+        var content = document.createElement('p')
+
+        title.className = 'mb-1'
+        title.innerText = item.title
+        content.innerText = item.content
+
+        link.href = item.link
+        link.appendChild(title)
+        link.appendChild(content)
+        link.className = 'p-4 is-block'
+
+        fragment.appendChild(link)
+    })
+
+    searchResultEl.appendChild(fragment)
+    searchResultEl.style.height = 'auto'
+}
+
+function searching(inputText) {
+    var inputTexts = inputText.split(' ')
+    var searchResults = []
+    inputTexts.forEach(function (searchKey) {
+        var haveSearchValue = Boolean(searchKey.trim())
+        if (!haveSearchValue) return
+
+        var key = searchKey.toLowerCase()
+
+        for (var entry of searchDatabase) {
+            var title = entry.getElementsByTagName('title')[0].textContent
+            var link = entry.getElementsByTagName('link')[0].getAttribute('href')
+            var contentWithTags = entry.getElementsByTagName('content')[0].textContent
+            var rawContent = contentWithTags.trim().replace(/<[^>]+>/g, '').toLowerCase()
+
+            var LENGTH = 80
+            var finalContent = ''
+            var contentLength = rawContent.length
+            var searchResultIdx = rawContent.indexOf(key)
+
+            var startIdx = searchResultIdx - 20,
+                endIdx = startIdx + LENGTH
+
+            if (startIdx < 0) {
+                startIdx = 0
+                endIdx = 100
+            }
+
+            endIdx > contentLength && (endIdx = contentLength)
+
+            finalContent = rawContent.substring(startIdx, endIdx)
+
+            if (title.indexOf(key) > -1 || searchResultIdx > -1) {
+                searchResults.push({
+                    link: link,
+                    title: title,
+                    content: finalContent
+                })
+            }
+        }
+    })
+    return searchResults
+}
+
+searchButtonEl.onclick = function () {
+    if (searchDatabase.length > 0) return;
+
+    fetch(window.location.href + '/search.xml').then(res => res.text()).then(res => {
+        var domparser = new DOMParser
+        var doc = domparser.parseFromString(res, 'application/xml')
+        searchDatabase = doc.getElementsByTagName('search')[0].children
+    })
+}</script><main class="aside-card-container profile-widget"><!-- todo: 使用取色工具动态阴影--><section class="is-flex is-flex-direction-column is-justify-content-center is-align-items-center"><section class="is-flex is-justify-content-center avatar is-clipped skeleton"><!-- debug images "https://api.ixiaowai.cn/gqapi/gqapi.php"--><img class="js-img-fadeIn" src="/images/avatar.jpg" alt="user avatar"></section><h3 class="user-name">Wjsvec</h3><blockquote class="has-text-centered is-relative"><span style="margin-bottom: 5px;">如果船长的最高目标是保住他的船，那么他只能永远呆在港口。</span></blockquote><address class="has-text-centered has-text-grey"><i class="iconfont icon-location" style="margin-right: 5px;"></i><span class="has-text-grey">中国 北京</span></address></section><section class="sns-container is-flex is-justify-content-center is-align-items-center"><a title="twitter" target="_blank" rel="noopener nofollow" href="//twitter.com/0kKL7jN4t57kiR6"><i class="iconfont icon-twitter"></i></a><!-- Github--><a title="github" target="_blank" rel="noopener nofollow" href="//github.com/wjsvec"><i class="iconfont icon-github"></i></a><!-- Ins--><!-- RSS--><!-- 知乎--><!-- 领英--><!-- 脸书--></section></main><main class="aside-card-container recent-widget"><h3>最近</h3><ul><li class="is-flex"><!-- change to element replace image placeholder--><img class="js-img-fadeIn" src="https://vonng.gitbooks.io/ddia-cn/content/img/fig3-8.png" alt="cover"><!--else--><!--    div.post-img-placeholder--><section class="is-flex-grow-2"><p class="has-text-weight-semibold" style="line-height: 20px; font-size: 14px"><a href="/2022/03/30/%E3%80%8A%E6%95%B0%E6%8D%AE%E5%AF%86%E9%9B%86%E5%9E%8B%E7%B3%BB%E7%BB%9F%E5%BA%94%E7%94%A8%E8%AE%BE%E8%AE%A1%E3%80%8B%E7%AC%AC%E4%B8%89%E7%AB%A0%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E4%BA%8B%E5%8A%A1%E5%A4%84%E7%90%86%E4%B8%8E%E5%88%86%E6%9E%90%E5%A4%84%E7%90%86/">《数据密集型系统应用设计》第三章读书笔记--事务处理与分析处理</a></p><time class="has-text-weight-semibold has-text-grey" datetime="2022-03-30T01:33:32.000Z">2022-03-30</time></section></li><li class="is-flex"><!-- change to element replace image placeholder--><img class="js-img-fadeIn" src="https://img-blog.csdnimg.cn/39f4de2b4c7f48baa4caa0ad8b3e6d01.png#pic_center" alt="cover"><!--else--><!--    div.post-img-placeholder--><section class="is-flex-grow-2"><p class="has-text-weight-semibold" style="line-height: 20px; font-size: 14px"><a href="/2022/01/25/DRG-%E4%B8%8E-ICD10-%E7%BC%96%E7%A0%81%E7%9B%B8%E5%85%B3%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E5%88%86%E4%BA%AB/">DRG 与 ICD10 编码相关论文阅读分享</a></p><time class="has-text-weight-semibold has-text-grey" datetime="2022-01-24T16:58:01.000Z">2022-01-25</time></section></li><li class="is-flex"><!-- change to element replace image placeholder--><img class="js-img-fadeIn" src="https://img-blog.csdnimg.cn/97edbb3c79a84cde84db1d14d076f112.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2pzdmVj,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="cover"><!--else--><!--    div.post-img-placeholder--><section class="is-flex-grow-2"><p class="has-text-weight-semibold" style="line-height: 20px; font-size: 14px"><a href="/2022/01/09/%E7%AE%80%E5%8D%95%E6%9A%B4%E5%8A%9B%E5%85%A5%E9%97%A8TDengine/">Windows简单暴力入门TDengine</a></p><time class="has-text-weight-semibold has-text-grey" datetime="2022-01-09T09:43:22.000Z">2022-01-09</time></section></li><li class="is-flex"><!-- change to element replace image placeholder--><img class="js-img-fadeIn" src="https://ui-avatars.com/api/?background=f5f5f5&amp;name=论坛" alt="cover"><!--else--><!--    div.post-img-placeholder--><section class="is-flex-grow-2"><p class="has-text-weight-semibold" style="line-height: 20px; font-size: 14px"><a href="/2021/12/06/%E8%AE%BA%E5%9D%9B%E7%9A%84%E6%89%93%E6%B2%B9%E8%AF%97%E4%B8%A4%E5%88%99/">论坛的打油诗两则</a></p><time class="has-text-weight-semibold has-text-grey" datetime="2021-12-06T10:58:25.000Z">2021-12-06</time></section></li><li class="is-flex"><!-- change to element replace image placeholder--><img class="js-img-fadeIn" src="https://i.loli.net/2021/11/27/SHIfQuKNYPMqhFo.png" alt="cover"><!--else--><!--    div.post-img-placeholder--><section class="is-flex-grow-2"><p class="has-text-weight-semibold" style="line-height: 20px; font-size: 14px"><a href="/2021/11/26/%E7%BB%99%E6%9E%9C%E5%9B%AD%E7%94%B5%E7%AE%A1%E5%90%8C%E5%AD%A6%E7%9A%84%E8%80%83%E7%A0%94%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB%E4%BB%A5%E5%8F%8A%E4%B8%80%E4%BA%9B%E7%AD%94%E7%96%91/">给果园电管同学的考研经验分享以及一些答疑</a></p><time class="has-text-weight-semibold has-text-grey" datetime="2021-11-26T15:26:17.000Z">2021-11-26</time></section></li><li class="is-flex"><!-- change to element replace image placeholder--><img class="js-img-fadeIn" src="https://i.loli.net/2021/11/21/bGcUdyK4NCPJ9Mp.jpg" alt="cover"><!--else--><!--    div.post-img-placeholder--><section class="is-flex-grow-2"><p class="has-text-weight-semibold" style="line-height: 20px; font-size: 14px"><a href="/2021/11/21/%E3%80%8A%E9%9D%9E%E7%BA%BF%E6%80%A7%E5%85%89%E7%BA%A4%E5%85%89%E5%AD%A6%E3%80%8B%E7%AC%AC%E5%9B%9B%E7%AB%A0%E7%AC%AC4%E9%A2%98%EF%BC%8C%E6%88%91%E7%9A%84%E8%A7%A3%E7%AD%94/">《非线性光纤光学》第四章第4题，我的解答</a></p><time class="has-text-weight-semibold has-text-grey" datetime="2021-11-21T00:33:04.000Z">2021-11-21</time></section></li></ul></main><main class="aside-card-container categories-widget category-page"><h3>分类</h3><section><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%85%89%E9%80%9A%E4%BF%A1/">光通信</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8F%8B%E9%93%BE/">友链</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E9%97%B2%E8%81%8A/">技术闲聊</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%94%9F%E6%B4%BB/">生活</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BC%96%E7%A8%8B%E5%BC%80%E5%8F%91/">编程开发</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/">自然语言处理</a><span class="category-list-count">1</span></li></ul></section></main><main class="aside-card-container archives-widget"><h3>归档</h3><section><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">一月 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">十月 2021</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">六月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/01/">一月 2000</a><span class="archive-list-count">1</span></li></ul></section></main><main class="aside-card-container tag-widget"><h3>标签</h3><section><a href="/tags/%E9%9D%9E%E7%BA%BF%E6%80%A7%E5%85%89%E5%AD%A6"><span class="tag post-item-tag" style="margin-bottom: 5px;">非线性光学</span></a><a href="/tags/%E7%AE%97%E6%B3%95%E9%A2%98"><span class="tag post-item-tag" style="margin-bottom: 5px;">算法题</span></a><a href="/tags/%E7%BC%96%E7%A8%8B%E5%BC%80%E5%8F%91"><span class="tag post-item-tag" style="margin-bottom: 5px;">编程开发</span></a><a href="/tags/%E5%89%8D%E7%AB%AF"><span class="tag post-item-tag" style="margin-bottom: 5px;">前端</span></a><a href="/tags/%E6%8A%80%E6%9C%AF%E9%97%B2%E8%81%8A"><span class="tag post-item-tag" style="margin-bottom: 5px;">技术闲聊</span></a><a href="/tags/%E5%8C%97%E9%82%AE%E4%BA%BA%E8%AE%BA%E5%9D%9B"><span class="tag post-item-tag" style="margin-bottom: 5px;">北邮人论坛</span></a><a href="/tags/%E6%95%B4%E6%B4%BB"><span class="tag post-item-tag" style="margin-bottom: 5px;">整活</span></a><a href="/tags/%E6%83%85%E6%84%9F"><span class="tag post-item-tag" style="margin-bottom: 5px;">情感</span></a><a href="/tags/%E5%85%89%E9%80%9A%E4%BF%A1"><span class="tag post-item-tag" style="margin-bottom: 5px;">光通信</span></a><a href="/tags/Matlab"><span class="tag post-item-tag" style="margin-bottom: 5px;">Matlab</span></a><a href="/tags/%E6%BF%80%E5%85%89%E5%B7%A5%E7%A8%8B"><span class="tag post-item-tag" style="margin-bottom: 5px;">激光工程</span></a><a href="/tags/%E5%8F%91%E7%97%85"><span class="tag post-item-tag" style="margin-bottom: 5px;">发病</span></a><a href="/tags/A-soul"><span class="tag post-item-tag" style="margin-bottom: 5px;">A-soul</span></a><a href="/tags/%E5%BC%80%E6%BA%90%E7%A4%BE%E5%8C%BA"><span class="tag post-item-tag" style="margin-bottom: 5px;">开源社区</span></a><a href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB"><span class="tag post-item-tag" style="margin-bottom: 5px;">论文阅读</span></a><a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0"><span class="tag post-item-tag" style="margin-bottom: 5px;">深度学习</span></a></section></main></aside></div></article><script>$claudia.fadeInImage(null, $claudia.blurBackdropImg)
+
+window.addEventListener('resize', $claudia.throttle(function () {
+    var images = document.querySelectorAll('.js-img-fadeIn')
+
+    images.forEach($claudia.blurBackdropImg)
+}, 150))</script></main><footer class="is-flex is-flex-direction-column is-align-items-center is-flex-shrink-0 is-family-serif"><section class="sns-container"><a title="twitter" target="_blank" rel="noopener nofollow" href="//twitter.com/0kKL7jN4t57kiR6"><i class="iconfont icon-twitter"></i></a><!-- Github--><a title="github" target="_blank" rel="noopener nofollow" href="//github.com/wjsvec"><i class="iconfont icon-github"></i></a><!-- Ins--><!-- RSS--><!-- 知乎--><!-- 领英--><!-- 脸书--></section><p><span>Copyright ©</span><span> Wjsvec 2023</span></p><div class="is-flex is-justify-content-center is-flex-wrap-wrap"><p>Powered by Hexo &verbar;&nbsp;</p><p class="is-flex is-justify-content-center"><a title="Hexo theme author" target="_blank" rel="noopener" href="//github.com/haojen">Theme by Haojen&nbsp;</a></p><div style="margin-top: 2px"><a class="github-button" title="github-button" target="_blank" rel="noopener" href="https://github.com/haojen/hexo-theme-Claudia" data-color-scheme="no-preference: light; light: light; dark: dark;" data-show-count="true"></a></div></div><div><span></span></div></footer><script async defer src="https://buttons.github.io/buttons.js"></script><script>$claudia.fadeInImage(null, $claudia.blurBackdropImg)
+
+window.addEventListener('resize', $claudia.throttle(function () {
+    var images = document.querySelectorAll('.js-img-fadeIn')
+
+    images.forEach($claudia.blurBackdropImg)
+}, 150))</script></body></html>
